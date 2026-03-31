@@ -1,260 +1,185 @@
 import streamlit as st
 
-# 1. إعداد الصفحة الأساسية لتكون عريضة
+# 1. إعداد الصفحة وتناسق الألوان (بدون زخارف)
 st.set_page_config(page_title="تاريخ ملوك المملكة", layout="wide")
 
-# 2. تصميم CSS مكثف واحترافي لتحقيق الرؤية التصميمية لميمي
 st.markdown("""
     <style>
-    /* خلفية التطبيق - لون أخضر باستيل غامق فخم (بدون زخارف) */
+    /* خلفية باستيل أخضر غامق فخم */
     .stApp {
-        background-color: #e0eae4; /* Olive Pastle */
+        background-color: #2d4c3e; 
+        color: white;
     }
     
-    /* تنسيق العنوان الرئيسي العلوي */
+    /* العنوان الرئيسي - ضخم وعريض جداً */
     .main-title {
-        color: #1a3c2e;
-        font-family: 'Arial', sans-serif;
+        color: #ffffff;
+        font-family: 'Arial Black', sans-serif;
         font-weight: 900;
         text-align: center;
-        font-size: 70px !important;
-        margin-top: 60px;
-        margin-bottom: 20px;
-        display: block;
-        width: 100%;
+        font-size: 80px !important;
+        margin-top: 50px;
+        margin-bottom: 5px;
     }
     
-    /* تنسيق الجملة التمهيدية البيضاء (أصغر ومع مسافة) */
+    /* الجملة التمهيدية - أصغر ومع مسافة */
     .sub-text-intro {
-        color: #ffffff;
-        background-color: #1a3c2e;
-        padding: 20px 40px;
-        border-radius: 20px;
+        color: #e0eae4;
         text-align: center;
-        font-size: 24px !important;
-        font-weight: bold;
-        max-width: 900px;
-        margin: 20px auto 60px auto; /* مسافة كبيرة بالأسفل */
+        font-size: 22px !important;
+        margin-top: 40px;
+        margin-bottom: 80px;
         display: block;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    /* تنسيق الدوائر لركائز المملكة */
+    /* تصميم البوكسات (الخانات) لأسماء الملوك */
+    .king-box {
+        background-color: #3d6351;
+        border: 2px solid #4d7a64;
+        border-radius: 25px;
+        padding: 50px 20px;
+        text-align: center;
+        margin: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .king-box:hover {
+        background-color: #4d7a64;
+        transform: scale(1.02);
+        border-color: #ffffff;
+    }
+    .king-box h2 {
+        color: white !important;
+        font-size: 45px !important;
+        font-weight: 800 !important;
+    }
+
+    /* الدوائر لركائز المملكة */
     .pillar-circle {
-        width: 240px;
-        height: 240px;
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
+        background-color: #1a3c2e;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        color: white;
+        margin: 20px auto;
+        padding: 20px;
+        font-size: 20px;
         font-weight: bold;
-        padding: 25px;
-        margin: 30px auto;
-        font-size: 22px !important;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        transition: transform 0.3s ease;
-    }
-    .pillar-circle:hover {
-        transform: scale(1.05);
-    }
-    .circle-1 { background-color: #1a3c2e; }
-    .circle-2 { background-color: #2d6a4f; }
-    .circle-3 { background-color: #40916c; }
-
-    /* تنسيق البطاقات (Boxes) لأسماء الملوك */
-    .king-card {
-        background-color: #1a3c2e;
-        color: white;
-        border-radius: 20px;
-        padding: 40px;
-        text-align: center;
-        margin: 15px 0;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        cursor: pointer;
-    }
-    .king-card:hover {
-        background-color: #2d6a4f;
-        transform: translateY(-5px);
-    }
-    .king-name {
-        font-size: 40px !important;
-        font-weight: 900;
-        margin: 0;
+        border: 4px solid #52b788;
     }
 
-    /* تنسيق الأزرار (اكتشف، عودة) */
+    /* الزر الكبير (اكتشف / عودة) */
     div.stButton > button {
         background-color: #1a3c2e !important;
         color: white !important;
-        font-size: 28px !important;
+        font-size: 26px !important;
         font-weight: bold !important;
-        padding: 20px 70px !important;
+        padding: 15px 50px !important;
         border-radius: 50px !important;
-        border: none !important;
+        border: 2px solid #ffffff !important;
         display: block;
-        margin: 60px auto !important;
-        width: auto !important;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    div.stButton > button:hover {
-        background-color: #2d6a4f !important;
-    }
-    
-    /* تنسيق صفحة الملك التفصيلية */
-    .king-detail-container {
-        background-color: white;
-        padding: 40px;
-        border-radius: 25px;
-        border-right: 15px solid #1a3c2e;
-        color: #1a3c2e;
-        margin-bottom: 30px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        margin: 50px auto !important;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# 3. بيانات الملوك التفصيلية (تم توسيعها وتدقيقها)
-KING_DETAILS = {
-    "الملك عبدالعزيز": {
-        "title": "الملك عبدالعزيز بن عبدالرحمن آل سعود (المؤسس)",
-        "image": "https://raw.githubusercontent.com/lama0/proto-pro/main/images/king_abdulaziz.jpg",
-        "description": "قاد كفاحاً طويلاً لتوحيد البلاد، بدأه باستعادة الرياض عام 1319هـ. أعلن قيام المملكة العربية السعودية عام 1351هـ. وضع أسس الدولة الحديثة، وركز على توطين البادية واستخراج النفط."
-    },
-    "الملك سعود": {
-        "title": "الملك سعود بن عبدالعزيز آل سعود",
-        "image": "https://raw.githubusercontent.com/lama0/proto-pro/main/images/king_saud.jpg",
-        "description": "واصل مسيرة البناء بعد والده، شهد عهده قفزة في التعليم والصحة. أسس جامعة الملك سعود (أول جامعة بالمملكة)، ووسع المسجد الحرام والمسجد النبوي."
-    },
-    "الملك فيصل": {
-        "title": "الملك فيصل بن عبدالعزيز آل سعود",
-        "image": "https://raw.githubusercontent.com/lama0/proto-pro/main/images/king_faisal.jpg",
-        "description": "عُرف بحكمته ودعمه للقضايا الإسلامية. أنشأ مشروع الري والصرف بالأحساء، واهتم بالتعليم الفني، وقاد تضامناً إسلامياً واسعاً."
-    },
-    "الملك خالد": {
-        "title": "الملك خالد بن عبدالعزيز آل سعود",
-        "image": "https://raw.githubusercontent.com/lama0/proto-pro/main/images/king_khaled.jpg",
-        "description": "شهد عهده رخاءً اقتصادياً، ونُفذت خطط تنموية شاملة. أسس الهيئة الملكية للجبيل وينبع، واهتم بتحسين مستوى معيشة المواطنين."
-    },
-    "الملك فهد": {
-        "title": "الملك فهد بن عبدالعزيز آل سعود",
-        "image": "https://raw.githubusercontent.com/lama0/proto-pro/main/images/king_fahd.jpg",
-        "description": "أول من اتخذ لقب 'خادم الحرمين الشريفين'. وضع النظام الأساسي للحكم، ونفذ أكبر توسعة للحرمين، وطوّر التعليم العالي."
-    },
-    "الملك عبدالله": {
-        "title": "الملك عبدالله بن عبدالعزيز آل سعود",
-        "image": "https://raw.githubusercontent.com/lama0/proto-pro/main/images/king_abdullah.jpg",
-        "description": "أطلق برنامج خادم الحرمين للابتعاث الخارجي، وأسس المدن الاقتصادية، وطوّر نظام القضاء، وشجع الحوار بين الأديان والثقافات."
-    },
-    "الملك سلمان": {
-        "title": "الملك سلمان بن عبدالعزيز آل سعود",
-        "image": "https://raw.githubusercontent.com/lama0/proto-pro/main/images/king_salman.jpg",
-        "description": "قائد الحزم والعزم، في عهده انطلقت 'رؤية المملكة 2030' الطموحة بقيادة سمو ولي العهد. شهدت المملكة تحولاً رقمياً شاملاً، وتطوراً في كافة المجالات."
-    }
-}
-
-# 4. إدارة الصفحات باستخدام Session State
-if 'current_page' not in st.session_state:
-    st.session_state.current_page = 'home'
+# إدارة الصفحات
+if 'page' not in st.session_state:
+    st.session_state.page = 'home'
 if 'selected_king' not in st.session_state:
     st.session_state.selected_king = None
 
-def go_to_page(page_name):
-    st.session_state.current_page = page_name
-    st.rerun()
-
-def select_king(king_name):
-    st.session_state.selected_king = king_name
-    st.session_state.current_page = 'king_detail'
-    st.rerun()
-
-# ==========================================
-#                  الصفحات
-# ==========================================
+# بيانات الملوك (المحتوى التفصيلي)
+KING_DETAILS = {
+    "الملك عبدالعزيز": {
+        "image": "https://static.majalla.com/styles/1200xauto/public/2023-09/159277.jpeg?VersionId=XTJ5e4r0bMAqk5h0vOHxBaHqC8Fpjzoe",
+        "bio": "مؤسس المملكة وموحدها، استعاد الرياض عام 1319هـ وأعلن توحيد المملكة عام 1351هـ. وضع أسس الإدارة والتعليم والاقتصاد."
+    },
+    "الملك سعود": {
+        "image": "https://www.marefa.org/w/images/b/b9/Saud.jpg",
+        "bio": "شهد عهده نهضة تعليمية كبرى بتأسيس أول جامعة، وتوسعة الحرمين الشريفين، وإنشاء العديد من الوزارات."
+    },
+    "الملك فيصل": {
+        "image": "https://www.qpedia.org//public/topics/1615201503.jpg",
+        "bio": "رائد التضامن الإسلامي، طور التعليم والزراعة وأنشأ مشروع الري والصرف بالأحساء."
+    },
+    "الملك خالد": {
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgz3MT_fTLBRivU83q73_vvtKW5mP9Oc8dfw&s",
+        "bio": "تميز عهده بالرخاء الاقتصادي، وإنشاء الهيئة الملكية للجبيل وينبع، ودعم خطط التنمية الخمسية."
+    },
+    "الملك فهد": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Fahd_of_Saudi_Arabia_Portrait.jpg/250px-Fahd_of_Saudi_Arabia_Portrait.jpg",
+        "bio": "خادم الحرمين الشريفين، أصدر النظام الأساسي للحكم، ونفذ أكبر توسعة تاريخية للحرمين الشريفين."
+    },
+    "الملك عبدالله": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/9/98/Abdullah_of_Saudi_Arabia.jpg",
+        "bio": "أطلق برنامج الابتعاث الخارجي، وأسس جامعة الملك عبدالله للعلوم والتقنية، وطور منظومة القضاء."
+    },
+    "الملك سلمان": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/%D8%A7%D9%84%D8%B5%D9%88%D8%B1%D8%A9_%D8%A7%D9%84%D8%B1%D8%B3%D9%85%D9%8A%D8%A9_%D9%84%D8%AE%D8%A7%D8%AF%D9%85_%D8%A7%D9%84%D8%AD%D8%B1%D9%85%D9%8A%D9%86_%D8%A7%D9%84%D8%B4%D8%B1%D9%8A%D9%81%D9%8A%D9%86_%D8%A7%D9%84%D9%85%D9%84%D9%83_%D8%B3%D9%84%D9%85%D8%A7%D9%86_%D8%A8%D9%86_%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D8%B9%D8%B2%D9%8A%D8%B2_%D8%A2%D9%84_%D8%B3%D8%B9%D9%88%D8%AF.jpg/330px-%D8%A7%D9%84%D8%B5%D9%88%D8%B1%D8%A9_%D8%A7%D9%84%D8%B1%D8%B3%D9%85%D9%8A%D8%A9_%D9%84%D8%AE%D8%A7%D8%AF%D9%85_%D8%A7%D9%84%D8%AD%D8%B1%D9%85%D9%8A%D9%86_%D8%A7%D9%84%D8%B4%D8%B1%D9%8A%D9%81%D9%8A%D9%86_%D8%A7%D9%84%D9%85%D9%84%D9%83_%D8%B3%D9%84%D9%85%D8%A7%D9%86_%D8%A8%D9%86_%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D8%B9%D8%B2%D9%8A%D8%B2_%D8%A2%D9%84_%D8%B3%D8%B9%D9%88%D8%AF.jpg",
+        "bio": "قائد التحول التاريخي، انطلقت في عهده رؤية 2030، وشهدت المملكة تمكيناً غير مسبوق للشباب والمرأة."
+    }
+}
 
 # --- الصفحة الرئيسية ---
-if st.session_state.current_page == 'home':
-    # العنوان الكبير
-    st.markdown('<h1 class="main-title">تاريخ الملوك في المملكة العربية السعودية</h1>', unsafe_allow_html=True)
+if st.session_state.page == 'home':
+    st.markdown('<h1 class="main-title">تاريخ الملوك</h1>', unsafe_allow_html=True)
+    st.markdown('<p class="sub-text-intro">تأسست المملكة العربية السعودية في عام 1932م على يد الملك عبدالعزيز بن عبدالرحمن آل سعود</p>', unsafe_allow_html=True)
+
+    # صور المعالم
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.image("https://makkah-madinah.accor.com/wp-content/uploads/2024/08/004-Kaaba-Makkah1.jpgا", caption="مكة المكرمة")
+    with col2:
+        st.image("https://blog.bayut.sa/uploads/2024/06/Body_01-49-1024x640.jpg", caption="برج التحلية")
+    with col3:
+        st.image("https://saudipedia.com/var/site/storage/images/0/8/5/8/5238580-1-ara-SA/a55fbe324284-88564.jpg", caption="برج المملكة - الرياض")
+
+    st.write("<br><hr><br>", unsafe_allow_html=True)
     
-    # الجملة التمهيدية البيضاء (أصغر وتحتها مسافة)
-    st.markdown('<div class="sub-text-intro">تأسست المملكة العربية السعودية في عام 1932م على يد الملك عبدالعزيز بن عبدالرحمن آل سعود</div>', unsafe_allow_html=True)
+    # الركائز (الدوائر)
+    st.markdown("<h2 style='text-align: center; font-size: 40px;'>ركائز المملكة</h2>", unsafe_allow_html=True)
+    r1, r2, r3 = st.columns(3)
+    with r1: st.markdown('<div class="pillar-circle">مجتمع حيوي</div>', unsafe_allow_html=True)
+    with r2: st.markdown('<div class="pillar-circle">اقتصاد مزدهر</div>', unsafe_allow_html=True)
+    with r3: st.markdown('<div class="pillar-circle">وطن طموح</div>', unsafe_allow_html=True)
 
-    # قسم الصور المطلوبة (روابط محدثة وموثوقة لضمان الظهور)
-    col_img1, col_img2, col_img3 = st.columns(3)
-    with col_img1:
-        st.image("https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa", caption="مكة المكرمة")
-    with col_img2:
-        st.image("https://images.unsplash.com/photo-1590074259118-439549f3e496", caption="المسجد النبوي")
-    with col_img3:
-        st.image("https://images.unsplash.com/photo-1582483540243-bd372659e99a", caption="برج المملكة بالرياض")
+    if st.button("اكتشف تاريخ الملوك"):
+        st.session_state.page = 'list'
+        st.rerun()
 
-    st.markdown("<br><hr><br>", unsafe_allow_html=True)
-
-    # ركائز المملكة على شكل دوائر (بخط أكبر)
-    st.markdown("<h2 style='text-align: center; color: #1a3c2e; font-size: 50px; font-weight: 900;'>ركائز المملكة</h2>", unsafe_allow_html=True)
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        st.markdown('<div class="pillar-circle circle-1">مجتمع حيوي وقيم إسلامية راسخة</div>', unsafe_allow_html=True)
-    with c2:
-        st.markdown('<div class="pillar-circle circle-2">اقتصاد مزدهر وقوة استثمارية</div>', unsafe_allow_html=True)
-    with c3:
-        st.markdown('<div class="pillar-circle circle-3">وطن طموح وحوكمة فعالة</div>', unsafe_allow_html=True)
-
-    # الزر الكبير للذهاب لصفحة الملوك
-    if st.button("اكتشف تاريخ الملوك ⬇️"):
-        go_to_page('kings_menu')
-
-# --- صفحة قائمة الملوك (البطاقات) ---
-elif st.session_state.current_page == 'kings_menu':
-    st.markdown('<h1 class="main-title">سيرة ملوك الوطن</h1>', unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #1a3c2e; font-size: 24px;'>اضغط على اسم الملك لاستعراض سيرته التفصيلية وصورته</p>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    # عرض الملوك كبطاقات قابلة للضغط
-    # نستخدم الحلقات (Loops) لإنشاء البطاقات بشكل مرتب
-    for king_name in KING_DETAILS.keys():
-        col_king, _ = st.columns([1, 1]) # نضع البطاقة في عمود واحد لتأخذ عرض الصفحة
-        with col_king:
-            st.markdown(f'<div class="king-card"><p class="king-name">{king_name}</p></div>', unsafe_allow_html=True)
-            # زر مخفي خلف البطاقة للضغط
-            if st.button(f"عرض سيرة {king_name}", key=king_name, use_container_width=True):
-                select_king(king_name)
+# --- صفحة قائمة الملوك (البوكسات) ---
+elif st.session_state.page == 'list':
+    st.markdown('<h1 class="main-title">ملوك المملكة</h1>', unsafe_allow_html=True)
     
-    # زر العودة للرئيسية
-    if st.button("🏠 العودة للصفحة الرئيسية"):
-        go_to_page('home')
+    # عرض كل ملك في بوكس لحاله
+    for king in KING_DETAILS.keys():
+        st.markdown(f'<div class="king-box"><h2>{king}</h2></div>', unsafe_allow_html=True)
+        if st.button(f"عرض تفاصيل {king}", key=king):
+            st.session_state.selected_king = king
+            st.session_state.page = 'details'
+            st.rerun()
+            
+    if st.button("العودة للرئيسية"):
+        st.session_state.page = 'home'
+        st.rerun()
 
 # --- صفحة الملك التفصيلية ---
-elif st.session_state.current_page == 'king_detail':
-    king_name = st.session_state.selected_king
-    if king_name:
-        king_info = KING_DETAILS[king_name]
-        
-        st.markdown(f'<h1 class="main-title">{king_info["title"]}</h1>', unsafe_allow_html=True)
-        
-        # تنسيق الصفحة التفصيلية (صورة الملك + الكلام)
-        col_king_img, col_king_text = st.columns([1, 2], gap="large")
-        
-        with col_king_img:
-            # صورة الملك (نحاول تحميلها، وإذا لم تظهر نضع علامة)
-            st.image(king_info["image"], use_container_width=True)
-            
-        with col_king_text:
-            st.markdown(f'<div class="king-detail-container">', unsafe_allow_html=True)
-            st.markdown(f"<h2>أبرز الإنجازات</h2>", unsafe_allow_html=True)
-            # نكتب الكلام بشكل منسق بدلاً من st.write لضمان الحجم
-            for line in king_info["description"].split('، '):
-                st.markdown(f"<p style='font-size: 22px; line-height: 1.6;'>✅ {line}</p>", unsafe_allow_html=True)
-            st.markdown('</div>', unsafe_allow_html=True)
-
-        # أزرار العودة
-        col_back1, col_back2 = st.columns(2)
-        with col_back1:
-            if st.button("👑 العودة لقائمة الملوك"):
-                go_to_page('kings_menu')
-        with col_back2:
-            if st.button("🏠 العودة للصفحة الرئيسية"):
-                go_to_page('home')
+elif st.session_state.page == 'details':
+    name = st.session_state.selected_king
+    king = KING_DETAILS[name]
+    
+    st.markdown(f'<h1 class="main-title">{name}</h1>', unsafe_allow_html=True)
+    
+    col_img, col_txt = st.columns([1, 2])
+    with col_img:
+        st.image(king["image"], use_container_width=True)
+    with col_txt:
+        st.markdown(f"<div style='background: #3d6351; padding: 40px; border-radius: 20px; font-size: 26px; line-height: 1.8;'>{king['bio']}</div>", unsafe_allow_html=True)
+    
+    if st.button("العودة لقائمة الملوك"):
+        st.session_state.page = 'list'
+        st.rerun()
